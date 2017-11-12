@@ -27,6 +27,9 @@ forDefaultParams:@{@"title": @"root"}]];
 [[STCRouterCenter defaultCenter] addWhiteListInPathWithBIDs:@{@"root": @[@""]}];
 [[STCRouterCenter defaultCenter] addWhiteListInPathWithBIDs:@{@"child": @[@"com.stevchen.STCRouter"]}];
 
+Attention:
+so, if you add a bundleId into blackList, app with this bundleId cann't open any path in router.If you add route path with bundleId into whiteList, only app with bundleId in whiteList can open the route.
+
 3.handle undefinded route, like this: 
 
 [[STCRouterCenter defaultCenter].router setRouterForward:^(STCRouterParams *routerParams, STCRouterError *error) {
