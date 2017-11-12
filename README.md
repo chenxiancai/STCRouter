@@ -39,11 +39,13 @@ If you add route path with bundleId into whiteList, only app with bundleId in wh
  
 4.open route, like this:
 
+inside app without scheme
+
 [[STCRouterCenter defaultCenter].router openURL:@"/child/user/child/user" withAnimated:YES extraParams:nil];
 
-or 
+or outside app with scheme
 
-[[STCRouterCenter defaultCenter].router openURL:@"router:///child?title=newChild"];
+[[STCRouterCenter defaultCenter].router openExternalURL:@"router:///root"];
 
 or with stack controllers
 
