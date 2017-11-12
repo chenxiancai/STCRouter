@@ -11,7 +11,7 @@ http:\\host[:port][abs_path][:parameters][?query]#fragment
 `
 
 ### example 
-``
+```
 1.Use STCRouterCenter to register URL format for controller with params, like this:
 
 [[STCRouterCenter defaultCenter].router  registerURLFormat:@"router:///root" toController:[ModalController class] withOptions:[[[STCRouterOption routerOptions] rootIndex:0] forDefaultParams:@{@"title": @"root"}]];
@@ -47,4 +47,4 @@ or
         [[STCRouterCenter defaultCenter].router openURL:url.absoluteString withAnimated:YES extraParams:nil];
  }
  
-``
+```
