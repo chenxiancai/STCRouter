@@ -60,6 +60,7 @@ or with stack controllers
  }
  
  6.set route from native to hybird, like this:
+ 
  [[STCRouterCenter defaultCenter].router changeURLFormat:@"router:///child" toHybridUrl:@"http://www.baidu.com"];
   
  you can revert it to native route:
