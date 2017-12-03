@@ -12,4 +12,7 @@
 - (id)initWithRouterParams:(NSDictionary *)params;
 + (id)allocWithRouterParams:(NSDictionary *)params;
 
+@optional
+- (void)setUrl:(NSString *)url;
+
 @end

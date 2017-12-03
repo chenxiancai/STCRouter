@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, STCRouterErrorCode) {
     STCRouterNotProvidedInInitialized = 300,
     STCRouterAppSchemeNotSet = 400,
     STCRouterNotFound = 500,
-    STCRouterControllerClassInitializerNotFound = 600
+    STCRouterControllerClassInitializerNotFound = 600,
+    STCRouterWebControllerClassInitializerNotSet = 700
 };
 // 路由的导航控制器没有设置
 FOUNDATION_EXPORT NSErrorDomain const STCRouterNaviControllerNotProvidedDomain;
@@ -28,6 +29,8 @@ FOUNDATION_EXPORT NSErrorDomain const STCRouterAppSchemeNotSetDomain;
 FOUNDATION_EXPORT NSErrorDomain const STCRouterNotFoundDomain;
 // 控制器没有实现路由协议的初始化方法
 FOUNDATION_EXPORT NSErrorDomain const STCRouterControllerClassInitializerNotFoundDomain;
+// web控制器没有设置
+FOUNDATION_EXPORT NSErrorDomain const STCRouterWebControllerClassInitializerNotSetDomain;
 
 @interface STCRouterError : NSError
 

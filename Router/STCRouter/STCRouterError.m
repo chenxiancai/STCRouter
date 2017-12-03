@@ -14,6 +14,7 @@ NSErrorDomain const STCRouterNotProvidedInInitializedDomain = @"Route not provid
 NSErrorDomain const STCRouterAppSchemeNotSetDomain = @"App scheme not set in STCRouter";
 NSErrorDomain const STCRouterNotFoundDomain = @"Route not found";
 NSErrorDomain const STCRouterControllerClassInitializerNotFoundDomain = @"Controller class Initializer not found for STCRouter";
+NSErrorDomain const STCRouterWebControllerClassInitializerNotSetDomain = @"Web Controller class not set for STCRouter";
 
 @implementation STCRouterError
 

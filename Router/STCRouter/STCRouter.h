@@ -42,6 +42,11 @@ typedef void (^STCRouterForward)(STCRouterParams *routerParams, STCRouterError *
 @property (readwrite, nonatomic, copy) STCRouterForward routerForward;
 
 /**
+ web控制器类名
+ */
+@property (readwrite, nonatomic, copy) NSString *webControllerClassName;
+
+/**
  注册URL的给匿名回调
 
  @param format 标准URL格式 http:\\host[:port][abs_path][:parameters][?query]#fragment
@@ -80,6 +85,22 @@ typedef void (^STCRouterForward)(STCRouterParams *routerParams, STCRouterError *
 - (void)registerURLFormat:(NSString *)format
              toController:(Class)controllerClass
               withOptions:(STCRouterOption *)options;
+
+/**
+ 把URL注册的路径转换成跳转到H5
+
+ @param format 标准URL格式 http:\\host[:port][abs_path][:parameters][?query]#fragment
+ @param hybridUrl hybridUrl
+ */
+- (BOOL)changeURLFormat:(NSString *)format
+            toHybridUrl:(NSString *)hybridUrl;
+
+/**
+ 把URL注册的路径还原回去
+
+ @param format 标准URL格式 http:\\host[:port][abs_path][:parameters][?query]#fragment
+ */
+- (BOOL)revertFromHybridWithURLFormat:(NSString *)format;
 
 /**
  封装UIApplication的openURL:方法

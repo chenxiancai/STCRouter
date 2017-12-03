@@ -21,6 +21,8 @@
 		5F29C0FF1FA0EEE7008DE96F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F29C0F91FA0EEE6008DE96F /* Default@2x.png */; };
 		5F29C1011FA0EEE7008DE96F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F29C0FC1FA0EEE6008DE96F /* main.m */; };
 		5F29C1021FA0EEE7008DE96F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F29C0FD1FA0EEE7008DE96F /* Default-568h@2x.png */; };
+		5F41681D1FD3F38F0078DE59 /* STCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F41681C1FD3F38F0078DE59 /* STCWebViewController.m */; };
+		5F41681F1FD3FBED0078DE59 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F41681E1FD3FBE50078DE59 /* WebKit.framework */; };
 		5F608B8F1FB80EE9004EF3FA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F608B8E1FB80EDB004EF3FA /* UIKit.framework */; };
 		5F8CEE581FB5A19B00EBF8F7 /* STCRouterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8CEE571FB5A19B00EBF8F7 /* STCRouterError.m */; };
 		F86EF9CA170C3C7B00EB726A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86EF9C9170C3C7B00EB726A /* Foundation.framework */; };
@@ -54,6 +56,9 @@
 		5F29C0FB1FA0EEE6008DE96F /* STCRouter-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STCRouter-Prefix.pch"; sourceTree = "<group>"; };
 		5F29C0FC1FA0EEE6008DE96F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5F29C0FD1FA0EEE7008DE96F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5F41681B1FD3F38F0078DE59 /* STCWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STCWebViewController.h; sourceTree = "<group>"; };
+		5F41681C1FD3F38F0078DE59 /* STCWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STCWebViewController.m; sourceTree = "<group>"; };
+		5F41681E1FD3FBE50078DE59 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5F608B8E1FB80EDB004EF3FA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5F8CEE561FB5A19B00EBF8F7 /* STCRouterError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STCRouterError.h; sourceTree = "<group>"; };
 		5F8CEE571FB5A19B00EBF8F7 /* STCRouterError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STCRouterError.m; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F41681F1FD3FBED0078DE59 /* WebKit.framework in Frameworks */,
 				5F608B8F1FB80EE9004EF3FA /* UIKit.framework in Frameworks */,
 				F86EF9CA170C3C7B00EB726A /* Foundation.framework in Frameworks */,
 			);
@@ -117,6 +123,7 @@
 		F86EF9C6170C3C7B00EB726A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F41681E1FD3FBE50078DE59 /* WebKit.framework */,
 				5F608B8E1FB80EDB004EF3FA /* UIKit.framework */,
 				F86EF9C9170C3C7B00EB726A /* Foundation.framework */,
 			);
@@ -156,6 +163,8 @@
 				5F29C0DD1FA0EEC6008DE96F /* STCNavigationController.m */,
 				5F29C0E71FA0EEC6008DE96F /* STCViewController.h */,
 				5F29C0EC1FA0EEC7008DE96F /* STCViewController.m */,
+				5F41681B1FD3F38F0078DE59 /* STCWebViewController.h */,
+				5F41681C1FD3F38F0078DE59 /* STCWebViewController.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -239,6 +248,7 @@
 				5F29C0EF1FA0EEC7008DE96F /* STCRouterParser.m in Sources */,
 				5F29C0ED1FA0EEC7008DE96F /* STCNavigationController.m in Sources */,
 				5F29C0EE1FA0EEC7008DE96F /* STCTabBarController.m in Sources */,
+				5F41681D1FD3F38F0078DE59 /* STCWebViewController.m in Sources */,
 				5F29C0F71FA0EED7008DE96F /* AppDelegate.m in Sources */,
 				5F29C0F41FA0EEC7008DE96F /* STCViewController.m in Sources */,
 				5F29C0F11FA0EEC7008DE96F /* STCRouter.m in Sources */,

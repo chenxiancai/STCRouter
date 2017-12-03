@@ -11,6 +11,7 @@
 #import "STCViewController.h"
 #import "STCNavigationController.h"
 #import "STCTabBarController.h"
+#import "STCWebViewController.h"
 
 @interface UserController : STCViewController
 
@@ -100,6 +101,24 @@
     [child setFrame:CGRectMake((self.view.bounds.size.width - child.frame.size.width)/2, self.view.bounds.size.height/2, child.frame.size.width, child.frame.size.height)];
 
     [self.view addSubview:child];
+    
+    
+    UIButton *hybri = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [hybri setTitle:@"hybri" forState:UIControlStateNormal];
+    [hybri addTarget:self action:@selector(tappedHybri:) forControlEvents:UIControlEventTouchUpInside];
+    [hybri sizeToFit];
+    [hybri setFrame:CGRectMake((self.view.bounds.size.width - hybri.frame.size.width)/2, self.view.bounds.size.height/2 + hybri.frame.size.height, hybri.frame.size.width, hybri.frame.size.height)];
+    
+    [self.view addSubview:hybri];
+    
+    
+    UIButton *native = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [native setTitle:@"native" forState:UIControlStateNormal];
+    [native addTarget:self action:@selector(tappedNative:) forControlEvents:UIControlEventTouchUpInside];
+    [native sizeToFit];
+    [native setFrame:CGRectMake((self.view.bounds.size.width - native.frame.size.width)/2, self.view.bounds.size.height/2 + native.frame.size.height + hybri.frame.size.height, native.frame.size.width, native.frame.size.height)];
+    
+    [self.view addSubview:native];
 }
 
 - (void)external1:(id)sender {
@@ -120,6 +139,16 @@
 - (void)tappedUser:(id)sender {
     //测试内部路径带参数跳转
     [[STCRouterCenter defaultCenter].router openURL:@"router:///root?title=stackRoot"];
+}
+
+- (void)tappedHybri:(id)sender {
+    // native 降级到 hybrid
+    [[STCRouterCenter defaultCenter].router changeURLFormat:@"router:///child" toHybridUrl:@"http://www.baidu.com"];
+}
+
+- (void)tappedNative:(id)sender {
+    // hybrid 还原到 native
+    [[STCRouterCenter defaultCenter].router revertFromHybridWithURLFormat:@"router:///child"];
 }
 
 @end
@@ -156,6 +185,7 @@
     
     // 路由配置
     [[STCRouterCenter defaultCenter].router setAppScheme:@"router"];
+    [[STCRouterCenter defaultCenter].router setWebControllerClassName:NSStringFromClass([STCWebViewController class])];
     [[STCRouterCenter defaultCenter].router setNavigationControllers:@[navi1, navi2, navi3]];
     [[STCRouterCenter defaultCenter].router setTabBarController:tabbar];
 #if DEBUG

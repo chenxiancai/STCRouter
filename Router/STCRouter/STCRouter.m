@@ -125,6 +125,57 @@
     [self.routes setObject:options forKey:format];
 }
 
+- (BOOL)changeURLFormat:(NSString *)format
+            toHybridUrl:(NSString *)hybridUrl
+{
+    if (!format) {
+        if (_ignoresExceptions) {
+            if (self.routerForward) {
+                STCRouterError *error = [[STCRouterError alloc] initWithDomain:STCRouterNotProvidedInInitializedDomain code:STCRouterNotProvidedInInitialized userInfo:nil];
+                self.routerForward(nil, error);
+            }
+            return NO;
+        }
+        @throw [NSException exceptionWithName:@"Route Not Provided"
+                                       reason:@"Route format is not initialized"
+                                     userInfo:nil];
+        return NO;
+    }
+    
+    STCRouterOption *options = [self.routes objectForKey:format];
+    if (!options) {
+        return NO;
+    } else {
+        options.hybridUrl = hybridUrl;
+        return YES;
+    }
+}
+
+- (BOOL)revertFromHybridWithURLFormat:(NSString *)format
+{
+    if (!format) {
+        if (_ignoresExceptions) {
+            if (self.routerForward) {
+                STCRouterError *error = [[STCRouterError alloc] initWithDomain:STCRouterNotProvidedInInitializedDomain code:STCRouterNotProvidedInInitialized userInfo:nil];
+                self.routerForward(nil, error);
+            }
+            return NO;
+        }
+        @throw [NSException exceptionWithName:@"Route Not Provided"
+                                       reason:@"Route format is not initialized"
+                                     userInfo:nil];
+        return NO;
+    }
+    
+    STCRouterOption *options = [self.routes objectForKey:format];
+    if (!options) {
+        return NO;
+    } else {
+        options.hybridUrl = nil;
+        return YES;
+    }
+}
+
 - (void)openExternalURL:(NSString *)url {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
@@ -161,6 +212,7 @@
     STCRouterParams *params = [self routerParamsForUrl:url extraParams:extraParams];
     STCRouterOption *options = params.routerOptions;
     
+    // block回调
     if (options.callback) {
         STCRouterCallback callback = options.callback;
         callback([params controllerParams]);
@@ -333,6 +385,25 @@
 
 - (UIViewController *)controllerForRouterParams:(STCRouterParams *)params
                             withControllerClass:(Class)controllerClass {
+    
+    STCRouterOption *options = params.routerOptions;
+    
+    if ([options.hybridUrl length] > 0) {
+        controllerClass = NSClassFromString(self.webControllerClassName);
+        if (!controllerClass) {
+            if (_ignoresExceptions) {
+                if (self.routerForward) {
+                    STCRouterError *error = [[STCRouterError alloc] initWithDomain:STCRouterWebControllerClassInitializerNotSetDomain code:STCRouterWebControllerClassInitializerNotSet userInfo:nil];
+                    self.routerForward(params, error);
+                }
+                return nil;
+            }
+            @throw [NSException exceptionWithName:@"STCRouter webController Not set"
+                                           reason:@"Your web controller have not set!"
+                                         userInfo:nil];
+        }
+    }
+    
     SEL class_SEL = sel_registerName("allocWithRouterParams:");
     SEL instance_SEL = sel_registerName("initWithRouterParams:");
     UIViewController *controller = nil;
@@ -340,13 +411,18 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if ([controllerClass respondsToSelector:class_SEL]) {
         controller = [controllerClass performSelector:class_SEL withObject:[params controllerParams]];
-    }
-    else if ([controllerClass instancesRespondToSelector:instance_SEL]) {
+    }else if ([controllerClass instancesRespondToSelector:instance_SEL]) {
         controller = [[controllerClass alloc] performSelector:instance_SEL withObject:[params controllerParams]];
+    }
+    
+    if (controller && [options.hybridUrl length] > 0) {
+        SEL setUrl_SEL = sel_registerName("setUrl:");
+        if ([controller respondsToSelector:setUrl_SEL]) {
+            [controller performSelector:setUrl_SEL withObject:options.hybridUrl];
+        }
     }
 #pragma clang diagnostic pop
     if (!controller) {
-        
         if (_ignoresExceptions) {
             if (self.routerForward) {
                 STCRouterError *error = [[STCRouterError alloc] initWithDomain:STCRouterControllerClassInitializerNotFoundDomain code:STCRouterControllerClassInitializerNotFound userInfo:nil];
@@ -362,5 +438,6 @@
     controller.modalTransitionStyle = params.routerOptions.transitionStyle;
     controller.modalPresentationStyle = params.routerOptions.presentationStyle;
     return controller;
+    
 }
 @end

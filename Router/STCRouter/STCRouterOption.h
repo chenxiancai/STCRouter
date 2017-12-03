@@ -16,6 +16,11 @@ typedef void (^STCRouterCallback)(NSDictionary *params);
 @interface STCRouterOption : NSObject
 
 /**
+ native 降级为H5 后的 hybridUrl
+ */
+@property (readwrite, nonatomic, strong) NSString *hybridUrl;
+
+/**
  当前开启的控制器类
  */
 @property (readwrite, nonatomic, strong) Class openClass;
