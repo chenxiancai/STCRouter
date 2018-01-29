@@ -208,7 +208,7 @@
     [self.window makeKeyAndVisible];
 
     // 测试内部路径跳转
-    [[STCRouterCenter defaultCenter].router openURL:@"/child/user/child/user" withAnimated:YES extraParams:nil];
+    [[STCRouterCenter defaultCenter].router openURL:@"/child/user" withAnimated:YES extraParams:nil];
     return YES;
 }
 

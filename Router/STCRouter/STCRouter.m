@@ -212,6 +212,12 @@
     STCRouterParams *params = [self routerParamsForUrl:url extraParams:extraParams];
     STCRouterOption *options = params.routerOptions;
     
+    // 如果拦截，退出解析
+    BOOL stop = self.routerHook(params, url);
+    if (stop) {
+        return;
+    }
+
     // block回调
     if (options.callback) {
         STCRouterCallback callback = options.callback;

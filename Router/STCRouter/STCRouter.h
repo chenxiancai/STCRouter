@@ -13,6 +13,8 @@
 
 typedef void (^STCRouterForward)(STCRouterParams *routerParams, STCRouterError * error);
 
+typedef BOOL (^STCRouterHook)(STCRouterParams *routerParams, NSString *url);
+
 @interface STCRouter : NSObject
 
 /**
@@ -40,6 +42,11 @@ typedef void (^STCRouterForward)(STCRouterParams *routerParams, STCRouterError *
  其他情况下路由转发
  */
 @property (readwrite, nonatomic, copy) STCRouterForward routerForward;
+
+/**
+ 路由拦截回调
+ */
+@property (readwrite, nonatomic, copy) STCRouterHook routerHook;
 
 /**
  web控制器类名
