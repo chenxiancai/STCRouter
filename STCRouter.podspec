@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'STCRouter'
   s.summary      = '基于标准URL实现的iOS路由系统，可实现业务模块组件化，解耦各个业务模块, 可实现native降级为hybrid。'
-  s.version      = '1.2.0'
+  s.version      = '1.2.1'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'chenxiancai' => 'chenxiancai@hotmail.com' }
   s.homepage     = 'https://github.com/chenxiancai/STCRouter'
