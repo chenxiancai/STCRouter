@@ -5,7 +5,7 @@
 pod 'STCRouter'
 ```
 
-### stander URL format
+### standard URL format
 ```
 http:\\host[:port][abs_path][:parameters][?query]#fragment
 ```
